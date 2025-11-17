@@ -5,12 +5,12 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
-import { WaterSurface } from "@/components/ui/water-surface"
+import { WaterParticles } from "@/components/ui/water-particles"
 
 export function HeroSection() {
   return (
     <section className="container py-24 md:py-32 relative overflow-hidden">
-      <WaterSurface className="z-0" intensity={0.25} dropletInterval={2500} />
+      <WaterParticles className="z-0" intensity={0.3} particleCount={60} interactive={true} />
       <div className="mx-auto max-w-4xl text-center space-y-6 relative z-10">
         {/* Trust Badge */}
         <motion.div
