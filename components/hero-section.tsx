@@ -10,7 +10,7 @@ import { WaterParticles } from "@/components/ui/water-particles"
 export function HeroSection() {
   return (
     <section className="container py-24 md:py-32 relative overflow-hidden">
-      <WaterParticles className="z-0" intensity={0.3} particleCount={60} interactive={true} />
+      <WaterParticles className="z-0" intensity={0.5} particleCount={60} interactive={true} />
       <div className="mx-auto max-w-4xl text-center space-y-6 relative z-10">
         {/* Trust Badge */}
         <motion.div

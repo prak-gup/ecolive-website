@@ -36,10 +36,15 @@ export function WaterParticles({
 
   const initParticles = useCallback(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    const container = containerRef.current
+    if (!canvas || !container) return
 
-    const width = canvas.width
-    const height = canvas.height
+    const rect = container.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+
+    // Only initialize if container has valid dimensions
+    if (width === 0 || height === 0) return
 
     particlesRef.current = Array.from({ length: particleCount }, () => {
       const size = 2 + Math.random() * 3
@@ -49,7 +54,7 @@ export function WaterParticles({
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         size,
-        opacity: 0.3 + Math.random() * 0.4,
+        opacity: 0.5 + Math.random() * 0.5,
         baseX: Math.random() * width,
         baseY: Math.random() * height,
       }
@@ -57,12 +62,16 @@ export function WaterParticles({
   }, [particleCount])
 
   const updateParticles = useCallback(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const container = containerRef.current
+    if (!container) return
 
-    const width = canvas.width
-    const height = canvas.height
+    const rect = container.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
     const mouse = mouseRef.current
+
+    // Don't update if container has no dimensions
+    if (width === 0 || height === 0) return
 
     particlesRef.current.forEach((particle) => {
       // Base floating motion
@@ -112,23 +121,29 @@ export function WaterParticles({
 
   const drawParticles = useCallback(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    const container = containerRef.current
+    if (!canvas || !container) return
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    const width = canvas.width
-    const height = canvas.height
+    const rect = container.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
 
-    // Clear with slight fade for trail effect
-    ctx.fillStyle = `rgba(255, 255, 255, 0.05)`
-    ctx.fillRect(0, 0, width, height)
+    // Don't draw if container has no dimensions
+    if (width === 0 || height === 0) return
+
+    // Clear canvas completely
+    ctx.clearRect(0, 0, width, height)
 
     const particles = particlesRef.current
 
+    // Don't draw if no particles initialized
+    if (particles.length === 0) return
+
     // Draw connections between nearby particles
-    ctx.strokeStyle = `rgba(0, 153, 213, ${intensity * 0.15})`
-    ctx.lineWidth = 0.5
+    ctx.lineWidth = 1
 
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -137,7 +152,7 @@ export function WaterParticles({
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < 100) {
-          const opacity = (1 - distance / 100) * intensity * 0.2
+          const opacity = (1 - distance / 100) * intensity * 0.4
           ctx.strokeStyle = `rgba(0, 153, 213, ${opacity})`
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
@@ -201,6 +216,14 @@ export function WaterParticles({
     if (!canvas || !container) return
 
     const rect = container.getBoundingClientRect()
+    
+    // Ensure container has dimensions
+    if (rect.width === 0 || rect.height === 0) {
+      // Retry after a short delay
+      setTimeout(() => setupCanvas(), 100)
+      return
+    }
+
     const dpr = window.devicePixelRatio || 1
 
     canvas.width = rect.width * dpr
@@ -213,6 +236,7 @@ export function WaterParticles({
       ctx.scale(dpr, dpr)
     }
 
+    // Initialize particles after canvas is properly sized
     initParticles()
   }, [initParticles])
 
