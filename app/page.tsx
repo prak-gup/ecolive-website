@@ -5,7 +5,7 @@ import { StatsSection } from "@/components/stats-section"
 import { ServicesOverview } from "@/components/services-overview"
 import { ConsultationForm } from "@/components/consultation-form"
 import { TestimonialsSection } from "@/components/testimonials-section"
-import { CaseStudiesSection } from "@/components/case-studies-section"
+import { BlogBridgeSection } from "@/components/blog-bridge-section"
 import { Droplet, Leaf, TrendingUp, Users } from "lucide-react"
 
 export default function Home() {
@@ -147,34 +147,6 @@ export default function Home() {
     },
   ]
 
-  // Case studies data
-  const caseStudies = [
-    {
-      id: "1",
-      title: "Manufacturing Company: 50% Water Reduction",
-      description:
-        "How a leading manufacturer reduced water consumption by 50% using EcoWater solutions, achieving ₹2.5M annual savings.",
-      category: "EcoWater",
-      href: "/resources/case-studies/manufacturing-water-reduction",
-    },
-    {
-      id: "2",
-      title: "Tech Company: ESG Transformation",
-      description:
-        "Complete ESG transformation journey of a technology company using the ECHO Framework, improving their ESG score by 40%.",
-      category: "EcoESG",
-      href: "/resources/case-studies/tech-esg-transformation",
-    },
-    {
-      id: "3",
-      title: "Real Estate: CSR Impact Story",
-      description:
-        "Measuring and maximizing CSR impact in the real estate sector, engaging 10,000+ community members through strategic programs.",
-      category: "EcoCSR",
-      href: "/resources/case-studies/real-estate-csr",
-    },
-  ]
-
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -183,9 +155,9 @@ export default function Home() {
         <StatsSection stats={stats} />
         <ServicesOverview services={services} />
         <TestimonialsSection testimonials={testimonials} />
-        <CaseStudiesSection caseStudies={caseStudies} />
+        <BlogBridgeSection />
         <section className="container py-16">
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-2xl px-4">
             <ConsultationForm />
           </div>
         </section>

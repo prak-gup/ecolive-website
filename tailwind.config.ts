@@ -33,7 +33,8 @@ const config: Config = {
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				foreground: 'hsl(var(--primary-foreground))',
+                container: 'hsl(var(--primary-container))'
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
@@ -54,18 +55,14 @@ const config: Config = {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			},
-  			brand: {
-  				green: 'hsl(var(--brand-green))',
-  				'green-hover': 'hsl(var(--brand-green-hover))',
-  				blue: 'hsl(var(--brand-blue))'
-  			}
+            surface: {
+                DEFAULT: 'hsl(var(--background))',
+                container: {
+                    low: 'hsl(var(--surface-container-low))',
+                    lowest: 'hsl(var(--surface-container-lowest))'
+                },
+                inverse: 'hsl(var(--inverse-surface))'
+            }
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -74,20 +71,12 @@ const config: Config = {
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
+  				from: { height: '0' },
+  				to: { height: 'var(--radix-accordion-content-height)' }
   			},
   			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
+  				from: { height: 'var(--radix-accordion-content-height)' },
+  				to: { height: '0' }
   			}
   		},
   		animation: {

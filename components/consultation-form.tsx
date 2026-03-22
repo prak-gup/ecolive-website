@@ -303,15 +303,15 @@ export function ConsultationForm({ variant = "default", onSuccess }: Consultatio
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Request a Consultation</CardTitle>
-        <CardDescription>
+    <Card className="border-none water-shadow bg-white rounded-[2rem] overflow-hidden">
+      <CardHeader className="bg-surface-container-low/30 pt-10 px-6 sm:px-10 pb-6">
+        <CardTitle className="text-3xl text-primary tracking-tight">Request a Consultation</CardTitle>
+        <CardDescription className="text-base mt-2">
           Get in touch with our team to discuss how EcoLive can help your business achieve
           its sustainability goals.
         </CardDescription>
       </CardHeader>
-      <CardContent>{formContent}</CardContent>
+      <CardContent className="pt-6 px-6 sm:px-10 pb-10">{formContent}</CardContent>
     </Card>
   )
 }

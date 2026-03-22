@@ -106,8 +106,8 @@ export function StatsSection({ stats }: StatsSectionProps) {
       >
         {stats.map((stat, index) => (
           <motion.div key={index} variants={itemVariants}>
-            <Card className="text-center w-full hover:shadow-lg transition-shadow duration-300 group">
-              <CardContent className="pt-6 px-4 sm:px-6">
+            <Card className="text-center w-full bg-white border-transparent water-shadow rounded-[2rem] group transition-transform duration-300 hover:-translate-y-1">
+              <CardContent className="pt-8 px-4 sm:px-6 pb-6">
                 {stat.icon && (
                   <motion.div
                     className="mb-4 flex justify-center"
